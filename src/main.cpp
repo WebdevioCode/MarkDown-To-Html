@@ -6,7 +6,7 @@ int main() {
     std::string fileName;
 
     std::cout << "Enter the name off the file (with the .md)" << std::endl << ">_";
-    std::cin >> fileName;
+    std::getline(cin,filename);
 
     std::ifstream Inputfile(fileName);
     std::ofstream Outputfile("output.html");
