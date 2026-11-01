@@ -35,6 +35,14 @@ int main() {
             Outputfile << "<h1>" << content << "</h1>\n";
         }
 
+        else if(line.find("**", 0) == 0) {
+            size_t Endpos = line.rfind("**");
+
+            if (Endpos != std::string::npos) {
+                std::string content = line.substr(2,Endpos - 2);
+                Outputfile << "<strong>" << content << "</strong>\n";
+            }
+        }
     }
 
     Inputfile.close();
