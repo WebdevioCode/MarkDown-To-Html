@@ -5,10 +5,10 @@
 int main() {
     std::string fileName;
 
-    std::cout << "Enter the name off the file (without the .md)";
+    std::cout << "Enter the name off the file (with the .md)";
     std::cin >> fileName;
 
-    std::ifstream Inputfile(fileName + ".md");
+    std::ifstream Inputfile(fileName);
     std::ofstream Outputfile("output.html");
 
     if(!Inputfile.is_open()) {
@@ -22,15 +22,15 @@ int main() {
 
     std::string line;
     while(std::getline(Inputfile, line)) {
-        if(line.rfind("### ", 0) == 0) {
+        if(line.find("### ", 0) == 0) {
             std::string content = line.substr(4);
             Outputfile << "<h3>" << content << "</h3>\n";
         }
-        else if(line.rfind("## ", 0) == 0) {
+        else if(line.find("## ", 0) == 0) {
             std::string content = line.substr(3);
             Outputfile << "<h2>" << content << "</h2>\n";
         }
-        else if(line.rfind("# ", 0) == 0) {
+        else if(line.find("# ", 0) == 0) {
             std::string content = line.substr(2);
             Outputfile << "<h1>" << content << "</h1>\n";
         }
