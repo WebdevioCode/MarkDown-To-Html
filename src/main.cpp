@@ -5,7 +5,7 @@
 int main() {
     std::string fileName;
 
-    std::cout << "Enter the name off the file (with the .md)";
+    std::cout << "Enter the name off the file (with the .md)" << std::endl << ">_";
     std::cin >> fileName;
 
     std::ifstream Inputfile(fileName);
@@ -34,7 +34,6 @@ int main() {
             std::string content = line.substr(2);
             Outputfile << "<h1>" << content << "</h1>\n";
         }
-
         else if(line.find("**", 0) == 0) {
             size_t Endpos = line.rfind("**");
 
@@ -44,6 +43,8 @@ int main() {
             }
         }
     }
+
+    std::cout << "Conversion finished";
 
     Inputfile.close();
     Outputfile.close();
