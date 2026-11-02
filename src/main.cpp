@@ -22,7 +22,7 @@ int main() {
 
     std::string line;
     while(std::getline(Inputfile, line)) {
-        if(line.find("### ", ) == 0) {
+        if(line.find("### ") == 0) {
             std::string content = line.substr(4);
             Outputfile << "<h3>" << content << "</h3>\n";
         }
@@ -30,11 +30,11 @@ int main() {
             std::string content = line.substr(3);
             Outputfile << "<h2>" << content << "</h2>\n";
         }
-        else if(line.find("# ", ) == 0) {
+        else if(line.find("# ") == 0) {
             std::string content = line.substr(2);
             Outputfile << "<h1>" << content << "</h1>\n";
         }
-        else if(line.find("**", ) == 0) {
+        else if(line.find("**") == 0) {
             size_t Endpos = line.rfind("**");
 
             if (Endpos != std::string::npos) {
