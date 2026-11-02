@@ -26,7 +26,7 @@ int main() {
             std::string content = line.substr(4);
             Outputfile << "<h3>" << content << "</h3>\n";
         }
-        else if(line.find("## ", ) == 0) {
+        else if(line.find("## ") == 0) {
             std::string content = line.substr(3);
             Outputfile << "<h2>" << content << "</h2>\n";
         }
@@ -40,6 +40,26 @@ int main() {
             if (Endpos != std::string::npos) {
                 std::string content = line.substr(2,Endpos - 2);
                 Outputfile << "<strong>" << content << "</strong>\n";
+            }
+        }
+        else if(!line.empty()) {
+            if(line.find("**")) {
+                size_t Endpos = line.rfind("**");
+                size_t Startpos = line.find("**");
+
+                if (Endpos != std::string::npos) {
+                    std::string content = line.substr(Startpos + 2,Endpos - Startpos - 2);
+                    std::string Newcontent = "<strong>" + content + "</strong>";
+                    std::string StartLine = line.substr(0,Startpos);
+                    std::string EndLine = line.substr(Endpos + 2);
+                    std::string NewText = "";
+                    NewText.append(StartLine);
+                    NewText.append(Newcontent);
+                    NewText.append(EndLine);
+                    Outputfile << "<p>" << NewText << "</p>\n";
+                }
+            } else {
+                Outputfile << "<p>" << line << "</p>\n";
             }
         }
     }
