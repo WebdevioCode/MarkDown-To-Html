@@ -3,11 +3,11 @@
 #include <fstream>
 
 void CheckForParagraph(std::string line, std::ofstream& Outputfile) {
-    if(line.find("**")) {
+    if(line.find("**")!= std::string::npos) {
                 size_t Endpos = line.rfind("**");
                 size_t Startpos = line.find("**");
 
-                if (Endpos != std::string::npos) {
+                if (Endpos && Startpos != std::string::npos) {
                     std::string content = line.substr(Startpos + 2,Endpos - Startpos - 2);
                     std::string Newcontent = "<strong>" + content + "</strong>";
                     std::string StartLine = line.substr(0,Startpos);
