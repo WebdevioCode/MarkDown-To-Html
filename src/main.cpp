@@ -21,6 +21,10 @@ int main() {
         std::cout << "There was an error creating    the html file";
         return 1;
     }
+    Outputfile << "<!DOCTYPE html>\n";
+    Outputfile << "<html>\n";
+    Outputfile << "<body>\n";
+
 
     std::string line;
     while(std::getline(Inputfile, line)) {
@@ -57,6 +61,10 @@ int main() {
             CheckForParagraph(line,Outputfile);
         }
     }
+
+
+    Outputfile << "</body>\n";
+    Outputfile << "</html>";
 
     std::cout << "Conversion finished";
 
