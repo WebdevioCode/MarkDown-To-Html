@@ -48,6 +48,29 @@ int main() {
                 Outputfile << "<strong>" << content << "</strong>\n";
             }
         }
+        else if(line.find("*") == 0) {
+            size_t Endpos = line.rfind("*");
+
+            if(Endpos != std::string::npos) {
+                std::string content = line.substr(1,Endpos - 1);
+                Outputfile << "<em>" << content << "</em>\n";
+            }
+        }
+        else if(line.find("---") != std::string::npos) {
+            Outputfile << "<hr>";
+        }
+        else if(line.find("https://") != std::string::npos || line.find("http://") != std::string::npos) {
+            size_t Endpos = line.rfind(")");
+            size_t Startpos = line.find("(");
+
+            if(Endpos != std::string::npos && Startpos != std::string::npos) {
+                std::string content = line.substr(Startpos + 1, Endpos -Startpos - 1);
+                size_t TextEndpos = line.rfind("]");
+                size_t TextStartpos = line.find("[");
+                std::string Text = line.substr(TextStartpos + 1, TextEndpos - TextStartpos - 1);
+                Outputfile << "<a href=\"" << content << "\"" << ">" << Text << "</a>\n";
+            }
+        }
         else if(line.rfind(".png") != std::string::npos || line.rfind(".jpeg") != std::string::npos) {
             CheckForImgTag(line,Outputfile);
         }
