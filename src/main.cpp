@@ -18,7 +18,7 @@ int main() {
         return 1;
     }
     if(!Outputfile.is_open()) {
-        std::cout << "There was an error creating/opening the html file";
+        std::cout << "There was an error creating    the html file";
         return 1;
     }
 
@@ -44,7 +44,7 @@ int main() {
                 Outputfile << "<strong>" << content << "</strong>\n";
             }
         }
-        else if(line.rfind(".png") || line.rfind(".jpeg")) {
+        else if(line.rfind(".png") != std::string::npos || line.rfind(".jpeg") != std::string::npos) {
             CheckForImgTag(line,Outputfile);
         }
         else if(!line.empty()) {
