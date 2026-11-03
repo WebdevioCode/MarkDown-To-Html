@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "Headings/CheckForParagraph.hpp"
+#include "Headings/CheckForImgTag.hpp"
 
 int main() {
     std::string fileName;
@@ -42,6 +43,9 @@ int main() {
                 std::string content = line.substr(2,Endpos - 2);
                 Outputfile << "<strong>" << content << "</strong>\n";
             }
+        }
+        else if(line.rfind(".png") || line.rfind(".jpeg")) {
+            CheckForImgTag(line,Outputfile);
         }
         else if(!line.empty()) {
             CheckForParagraph(line,Outputfile);
