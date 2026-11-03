@@ -17,7 +17,7 @@ void CheckForImgTag(std::string line, std::ofstream& Outputfile) {
                 }
                 else {
                     std::string content = line.substr(Startpos + 1, Endpos - Startpos - 1);
-                    Outputfile << "<img src=" << content << ">\n";
+                    Outputfile << "<img src=\"" << content << "\"" << ">\n";
                 }
             }
             }
@@ -35,7 +35,7 @@ void CheckForImgTag(std::string line, std::ofstream& Outputfile) {
                 }
                 else {
                     std::string content = line.substr(Startpos + 1, Endpos - Startpos - 1);
-                    Outputfile << "<img src=" << content << ">\n";
+                    Outputfile << "<img src=\"" << content << "\"" << ">\n";
                 }
                 }
             }
