@@ -47,6 +47,12 @@ int main() {
         else if(line.rfind(".png") != std::string::npos || line.rfind(".jpeg") != std::string::npos) {
             CheckForImgTag(line,Outputfile);
         }
+        else if(line.find("<div>") != std::string::npos) {
+            Outputfile << "<div>\n";
+        }
+        else if(line.find("</div>") != std::string::npos ) {
+            Outputfile << "</div>\n";
+        }
         else if(!line.empty()) {
             CheckForParagraph(line,Outputfile);
         }
