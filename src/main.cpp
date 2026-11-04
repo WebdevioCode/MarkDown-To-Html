@@ -56,9 +56,6 @@ int main() {
                 Outputfile << "<em>" << content << "</em>\n";
             }
         }
-        else if(line.find("---") != std::string::npos) {
-            Outputfile << "<hr>";
-        }
         else if(line.find("https://") != std::string::npos || line.find("http://") != std::string::npos) {
             size_t Endpos = line.rfind(")");
             size_t Startpos = line.find("(");
@@ -79,6 +76,9 @@ int main() {
         }
         else if(line.find("</div>") != std::string::npos ) {
             Outputfile << "</div>\n";
+        }
+         else if(line == "---") {
+            Outputfile << "<hr>\n";
         }
         else if(!line.empty()) {
             CheckForParagraph(line,Outputfile);
