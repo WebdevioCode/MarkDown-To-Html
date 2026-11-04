@@ -18,7 +18,7 @@ int main() {
         return 1;
     }
     if(!Outputfile.is_open()) {
-        std::cout << "There was an error creating    the html file";
+        std::cout << "There was an error creating the html file";
         return 1;
     }
     Outputfile << "<!DOCTYPE html>\n";
