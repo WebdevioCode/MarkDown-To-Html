@@ -1,3 +1,13 @@
+
+```
+#include <iostream>
+
+int main() {
+    std::cout << "Hello guys"
+}
+
+```
+
 **Hellooo**
 ## Test
 **Hellooo**
@@ -30,14 +40,5 @@ Hello **Guys** Omg
 
 ![Google](https://www.google.com)
 
-```
+~~~Hello Guyssss~~~
 
-Helloooo guysssss
-
-Helloo **Guys** Omg
-
-
-~~~Hello~~
-
-
-```
