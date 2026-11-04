@@ -18,11 +18,26 @@ Helloo **Guys** Omg
 
 <div>
 
+Hello Hello *Hello* Hello Hello
+
 Hello **Guys** Omg
 
 ![alt text](image.png)
 ![alt text](image.jpeg)
 </div>
+
+---
+
+![Google](https://www.google.com)
+
+```
+
 Helloooo guysssss
 
 Helloo **Guys** Omg
+
+
+~~~Hello~~
+
+
+```
