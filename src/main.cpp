@@ -29,7 +29,21 @@ int main() {
 
     std::string line;
     while(std::getline(Inputfile, line)) {
-        if(line.find("### ") == 0) {
+        if(line == "```") {
+            if (!insidecodeblock) {
+                Outputfile << "<pre><code>\n";
+                insidecodeblock = true;
+            }
+            else {
+                Outputfile << "</code></pre>\n";
+                insidecodeblock = false;
+            }
+            continue;
+        }
+        else if(insidecodeblock) {
+            Outputfile << line << "\n"; 
+        }
+       else if(line.find("### ") == 0) {
             std::string content = line.substr(4);
             Outputfile << "<h3>" << content << "</h3>\n";
         }
@@ -87,16 +101,6 @@ int main() {
             if (Endpos != std::string::npos) {
                 std::string content = line.substr(Startpos + 3,Endpos - 4);
                 Outputfile << "<del>" << content << "</del>\n";
-            }
-        }
-        else if(line == "```") {
-            if (!insidecodeblock == true) {
-                Outputfile << "<pre><code>\n";
-                insidecodeblock = true;
-            }
-            else {
-                Outputfile << "</code></pre>\n";
-                insidecodeblock = false;
             }
         }
         else if(!line.empty()) {
