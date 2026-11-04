@@ -5,7 +5,7 @@
 void CheckForImgTag(std::string line, std::ofstream& Outputfile) {
     if (line.rfind(".png") != std::string::npos) {
             size_t Endpos = line.rfind(")");
-            size_t Startpos = line.rfind("(");
+            size_t Startpos = line.find("(");
 
             if (Endpos && Startpos != std::string::npos) {
                 if(line.find("![") != std::string::npos){
