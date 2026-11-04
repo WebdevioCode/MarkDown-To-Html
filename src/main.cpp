@@ -6,6 +6,7 @@
 
 int main() {
     std::string fileName;
+    bool insidecodeblock = false;
 
     std::cout << "Enter the name off the file (with the .md)" << std::endl << ">_";
     std::getline(std::cin, fileName);
@@ -79,6 +80,27 @@ int main() {
         }
          else if(line == "---") {
             Outputfile << "<hr>\n";
+        }
+        else if(line.find("~") == 0) {
+            size_t Endpos = line.rfind("~");
+            size_t Startpos = line.find("~");
+            if (Endpos != std::string::npos) {
+                std::string content = line.substr(Startpos + 3,Endpos - 4);
+                Outputfile << "<del>" << content << "</del>\n";
+            }
+        }
+        else if(line == "```") {
+            if (!insidecodeblock == true) {
+                Outputfile << "<pre><code>\n";
+                insidecodeblock = true;
+            }
+            else {
+                Outputfile << "</code></pre>\n";
+                insidecodeblock = false;
+            }
+            
+
+
         }
         else if(!line.empty()) {
             CheckForParagraph(line,Outputfile);
