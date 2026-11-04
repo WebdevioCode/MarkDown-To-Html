@@ -98,9 +98,6 @@ int main() {
                 Outputfile << "</code></pre>\n";
                 insidecodeblock = false;
             }
-            
-
-
         }
         else if(!line.empty()) {
             CheckForParagraph(line,Outputfile);
