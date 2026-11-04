@@ -57,17 +57,19 @@ int main() {
         }
         else if(line.find("**") == 0) {
             size_t Endpos = line.rfind("**");
+            size_t Startpos = line.find("**");
 
             if (Endpos != std::string::npos) {
-                std::string content = line.substr(2,Endpos - 2);
+                std::string content = line.substr(Startpos + 2,Endpos - Startpos - 2);
                 Outputfile << "<strong>" << content << "</strong>\n";
             }
         }
         else if(line.find("*") == 0) {
             size_t Endpos = line.rfind("*");
+            size_t Startpos = line.find("*");
 
             if(Endpos != std::string::npos) {
-                std::string content = line.substr(1,Endpos - 1);
+                std::string content = line.substr(Startpos + 1,Endpos - Startpos - 1);
                 Outputfile << "<em>" << content << "</em>\n";
             }
         }
@@ -95,11 +97,11 @@ int main() {
          else if(line == "---") {
             Outputfile << "<hr>\n";
         }
-        else if(line.find("~") == 0) {
-            size_t Endpos = line.rfind("~");
-            size_t Startpos = line.find("~");
+        else if(line.find("~~") == 0) {
+            size_t Endpos = line.rfind("~~");
+            size_t Startpos = line.find("~~");
             if (Endpos != std::string::npos) {
-                std::string content = line.substr(Startpos + 3,Endpos - 4);
+                std::string content = line.substr(Startpos + 3,Endpos - Startpos - 4);
                 Outputfile << "<del>" << content << "</del>\n";
             }
         }
