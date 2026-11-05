@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <fstream>
 #include <string>
 #include "Headings/CheckForParagraph.hpp"
@@ -7,6 +7,7 @@
 int main() {
     std::string fileName;
     bool insidecodeblock = false;
+    bool insideList = false;
 
     std::cout << "Enter the name off the file (with the .md)" << std::endl << ">_";
     std::getline(std::cin, fileName);
@@ -34,7 +35,7 @@ int main() {
                 Outputfile << "<pre><code>\n";
                 insidecodeblock = true;
             }
-            else {
+            else if(insidecodeblock) {
                 Outputfile << "</code></pre>\n";
                 insidecodeblock = false;
             }
@@ -42,6 +43,27 @@ int main() {
         }
         else if(insidecodeblock) {
             Outputfile << line << "\n"; 
+        }
+        else if(line == "---") {
+            Outputfile << "<hr>\n";
+        }
+
+        else if(insideList && line.find("-") != 0) {
+            Outputfile << "</ul>\n";
+            insidecodeblock = false;
+        }
+        else if(line.find("-") == 0) {
+            if (!insideList) {
+                Outputfile << "<ul>\n";
+                std::string content = line.substr(2);
+                Outputfile << "<li>" << content << "</li>\n";
+                insideList = true;
+            }
+            else if(insideList) {
+                std::string content = line.substr(2);
+                Outputfile << "<li>" << content << "</li>\n";
+        }
+            continue;
         }
        else if(line.find("### ") == 0) {
             std::string content = line.substr(4);
@@ -93,9 +115,6 @@ int main() {
         }
         else if(line.find("</div>") != std::string::npos ) {
             Outputfile << "</div>\n";
-        }
-         else if(line == "---") {
-            Outputfile << "<hr>\n";
         }
         else if(line.find("~~") == 0) {
             size_t Endpos = line.rfind("~~");
