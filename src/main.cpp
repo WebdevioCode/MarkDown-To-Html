@@ -44,27 +44,6 @@ int main() {
         else if(insidecodeblock) {
             Outputfile << line << "\n"; 
         }
-        else if(line == "---") {
-            Outputfile << "<hr>\n";
-        }
-
-        else if(insideList && line.find("-") != 0) {
-            Outputfile << "</ul>\n";
-            insidecodeblock = false;
-        }
-        else if(line.find("-") == 0) {
-            if (!insideList) {
-                Outputfile << "<ul>\n";
-                std::string content = line.substr(2);
-                Outputfile << "<li>" << content << "</li>\n";
-                insideList = true;
-            }
-            else if(insideList) {
-                std::string content = line.substr(2);
-                Outputfile << "<li>" << content << "</li>\n";
-        }
-            continue;
-        }
        else if(line.find("### ") == 0) {
             std::string content = line.substr(4);
             Outputfile << "<h3>" << content << "</h3>\n";
@@ -115,6 +94,8 @@ int main() {
         }
         else if(line.find("</div>") != std::string::npos ) {
             Outputfile << "</div>\n";
+        }else if(line == "---") {
+            Outputfile << "<hr>\n";
         }
         else if(line.find("~~") == 0) {
             size_t Endpos = line.rfind("~~");
@@ -123,6 +104,23 @@ int main() {
                 std::string content = line.substr(Startpos + 3,Endpos - Startpos - 4);
                 Outputfile << "<del>" << content << "</del>\n";
             }
+        }
+        else if(insideList && line.find("-") != 0) {
+            Outputfile << "</ul>\n";
+            insidecodeblock = false;
+        }
+        else if(line.find("-") == 0) {
+            if (!insideList) {
+                Outputfile << "<ul>\n";
+                std::string content = line.substr(2);
+                Outputfile << "<li>" << content << "</li>\n";
+                insideList = true;
+            }
+            else if(insideList) {
+                std::string content = line.substr(2);
+                Outputfile << "<li>" << content << "</li>\n";
+        }
+            continue;
         }
         else if(!line.empty()) {
             CheckForParagraph(line,Outputfile);
